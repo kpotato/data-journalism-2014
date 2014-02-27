@@ -1,0 +1,21 @@
+body{
+font-family: Georgia, Times New Roman, serif; /*First choice font, second, worst-case scenario*/
+background-color: #33194D;
+}
+
+h1{
+font-size: 25px;
+color: #a125f4;
+}
+
+#wrapper{
+width: 600px;
+margin: 0 auto; /*First value: change to top and bottom, Second: change to left and right.*/
+background-color: #ffffff;
+padding: 20px; /*Note that padding increases PAST width*/
+}
+
+.imgleft{
+float: left;
+margin-right: 10px;
+}

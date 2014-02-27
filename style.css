@@ -9,7 +9,7 @@ color: #a125f4;
 }
 
 #wrapper{
-width: 600px;
+width: 800px;
 margin: 0 auto; /*First value: change to top and bottom, Second: change to left and right.*/
 background-color: #ffffff;
 padding: 20px; /*Note that padding increases PAST width*/

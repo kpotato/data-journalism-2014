@@ -1,5 +1,10 @@
 body{
+width: 70%
+margin: auto;
+margin-top: 30px;
+line-height: 1.5em;
 font-family: Georgia, Times New Roman, serif; /*First choice font, second, worst-case scenario*/
+font-size: 15px;
 background-color: #33194D;
 }
 
@@ -9,7 +14,7 @@ color: #a125f4;
 }
 
 #wrapper{
-width: 800px;
+width: 600px;
 margin: 0 auto; /*First value: change to top and bottom, Second: change to left and right.*/
 background-color: #ffffff;
 padding: 20px; /*Note that padding increases PAST width*/

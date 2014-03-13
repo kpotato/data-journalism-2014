@@ -1,0 +1,167 @@
+<style type="text/css">
+
+body {
+  width:760px;
+  margin:40px auto;
+  font-family: georgia, sans;
+}
+
+h1 {
+  border-bottom:1px solid #dedede;
+  margin-bottom:20px;
+  padding-bottom:20px;
+}
+
+.drug-box {
+	background-color: #a2c4c9;
+	font-size: 20px;
+	width: 100px;
+	margin: 20px;
+	padding: 10px;
+	float: left;
+	}
+	
+.selected {
+	background-color: red;
+	}
+	
+.reset {	
+	background-color: #a2c4c9;
+	font-size: 20px;
+	width: 100px;
+	margin: 20px;
+	padding: 10px;
+	}
+	
+
+</style>
+
+<script type="text/javascript" src="jquery.js"></script>
+
+<h1>Starter interactive</h1>
+
+<div class="meter">
+	<span style="width: 50%"></span>
+</div>
+
+<div id="print_total"></div>
+
+<div class="reset"> Reset! </div>
+
+<div class="drug-box" id="excedrin" data-num="2000">
+	<img src="excedrin.jpg">
+</div>
+
+<div class="drug-box" id="nyquil" data-num="2600">
+	<img src="nyquil.jpg">
+</div>
+
+<div class="drug-box" id="robitussin" data-num="3840">
+	<img src="robitussin.jpg">
+</div>
+
+<div class="drug-box" id="sudafed" data-num="3250">
+	<img src="sudafed.jpg">
+</div>
+
+<div class="drug-box" id="alkaseltzer" data-num="2000">
+	<img src="alkaseltzer.jpg">
+</div>
+
+<div class="drug-box" id="theraflu" data-num="3900">
+	<img src="theraflu.jpg">
+</div>
+
+<div class="drug-box" id="tylenolextrastrngth" data-num="3000">
+	<img src="tylenolextrastrngth.jpg">
+</div>
+
+<div class="drug-box" id="zicam" data-num="3900">
+	<img src="zicam.jpg">
+</div>
+
+<div class="drug-box" id="anacin" data-num="4000">
+	<img src="anacin.jpg">
+</div>
+
+<div class="drug-box" id="childrenstylenol" data-num="800">
+	<img src="childrenstylenol.jpg">
+</div>
+
+<div class="drug-box" id="dimetapp" data-num="800">
+	<img src="dimetapp.jpg">
+</div>
+
+<div class="drug-box" id="panadol" data-num="800">
+	<img src="panadol.jpg">
+</div>
+
+<div class="drug-box" id="dayquil" data-num="1300">
+	<img src="dayquil.jpg">
+</div>
+
+<div class="drug-box" id="coricidin" data-num="3900">
+	<img src="coricidin.jpg">
+</div>
+
+<div class="drug-box" id="tylenolwcodeine" data-num="4000">
+	<img src="tylenolwcodeine.jpg">
+</div>
+
+<div class="drug-box" id="vicodin" data-num="3960">
+	<img src="vicodin.jpg">
+</div>
+
+<div class="drug-box" id="percoset" data-num="3900">
+	<img src="percoset.jpg">
+</div>
+
+<div class="drug-box" id="hydrocodone" data-num="3900">
+	<img src="hydrocodone.jpg">
+</div>
+
+<div class="drug-box" id="oxycodone" data-num="3900">
+	<img src="oxycodone.jpg">
+</div>
+
+<div class="drug-box" id="ultracet" data-num="2600">
+	<img src="ultracet.jpg">
+</div>
+
+<script type="text/javascript">
+
+// this is how you comment in javascript.
+console.log("this is where javascript will go!");
+
+</script>
+
+<script>
+var total_dose = 0;
+
+$(document).ready(function(){
+  $("div").click(function(){
+  if($(this).hasClass("drug-box")){
+   $(this).toggleClass("selected");
+   
+   if($(this).hasClass("selected")){
+   total_dose = total_dose + $(this).data("num");
+   $('#print_total').html(total_dose);
+   }
+   else {
+   total_dose = total_dose - $(this).data("num");
+   $('#print_total').html(total_dose);
+   }
+   console.log(total_dose);
+   }
+   if($(this).hasClass("reset")){
+	$(".drug-box").removeClass("selected");
+	total_dose = 0;
+	$('#print_total').html(total_dose);
+	}
+   
+   if(total_dose > 15000){
+   alert("Dead!!");
+   }
+  });
+});
+</script>

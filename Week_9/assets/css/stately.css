@@ -1,0 +1,72 @@
+/** Stately setup
+*************************************/
+@font-face {
+  font-family: 'stately-webfont';
+  src: url("../font/stately-webfont.eot");
+  src: url("../font/stately-webfont.eot?#iefix") format("embedded-opentype"), url("../font/stately-webfont.woff") format("woff"), url("../font/stately-webfont.ttf") format("truetype"), url("../font/stately-webfont.svg#testfontRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.stately {
+  font: normal normal 500px "stately-webfont";
+  line-height: 100%;
+  font-size-adjust: none;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -moz-font-feature-settings: "liga=1";
+  -ms-font-feature-settings: "liga" 1;
+  -ms-font-feature-settings: "liga", "dlig";
+  overflow: hidden;
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  background: #000000;
+  border-radius: 0; }
+  .stately li {
+    float: left;
+    margin: -20% 0 0 -100%;
+    position: relative;
+    left: 101%;
+    width: 100%;
+    cursor: default;
+    -webkit-transition: all 1s ease-in;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+	
+table{
+  font-family:"Geneva", arial, sans-serif;
+  margin-left:auto; 
+  margin-right:auto;
+	}
+	
+td.State-cell{
+	text-align: left
+	}
+	
+td.Guns-cell{
+	text-align: right
+	}
+
+/** Style customizations
+*************************************/
+
+#presidents {
+  color: #ffffb2; }
+  #presidents .de, #presidents .nh, #presidents .me, #presidents .nj, #presidents .wy, #presidents .nd, #presidents .ak, #presidents .sd, #presidents .id, #presidents .or, #presidents .ct, #presidents .md, #presidents .ut, #presidents .mt, #presidents .nm, #presidents .ny {
+    color: #fecc5c; }
+  #presidents .nv, #presidents .ne, #presidents .ma, #presidents .sc, #presidents .wa, #presidents .ks, #presidents .pa, #presidents .co, #presidents .wv, #presidents .ok, #presidents .va, #presidents .nc, #presidents .mo, #presidents .az, #presidents .ia, #presidents .mn, #presidents .ca, #presidents .la, #presidents .fl, #presidents .mi, #presidents .ga, #presidents .tx, #presidents.ar  {
+    color: #fd8d3c; }
+  #presidents .al, #presidents .tn, #presidents .oh, #presidents .ky, #presidents .wi, #presidents .ms, #presidents .in {
+    color: #f03b20; }
+  #presidents .il{
+    color: #bd0026; }
+

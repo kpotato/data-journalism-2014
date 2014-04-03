@@ -42,6 +42,37 @@
     -ms-user-select: none;
     user-select: none; }
 	
+.key{
+	font-family:"Geneva",arial,sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	line-height:90%;
+	text-align:left;
+	margin-top:300px;
+	margin-left:350px;
+}
+
+#keytitle{
+	color: white;
+	font-size: 11px;
+	}
+#key1{
+	color: #ffffb2;
+	}
+#key2{
+	color: #fecc5c;
+	}
+#key3{
+	color: #fd8d3c;
+	}
+#key4{
+	color: #f03b20;
+	}
+#key5{
+	color: #bd0026;
+	}
+
+	
 table{
   font-family:"Geneva", arial, sans-serif;
   margin-left:auto; 

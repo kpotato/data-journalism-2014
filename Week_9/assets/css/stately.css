@@ -46,10 +46,10 @@
 	font-family:"Geneva",arial,sans-serif;
 	font-weight: bold;
 	font-size: 15px;
-	line-height:90%;
+	line-height:95%;
 	text-align:left;
 	margin-top:300px;
-	margin-left:350px;
+	margin-left:355px;
 }
 
 #keytitle{
@@ -94,7 +94,7 @@ td.Guns-cell{
   color: #ffffb2; }
   #presidents .de, #presidents .nh, #presidents .me, #presidents .nj, #presidents .wy, #presidents .nd, #presidents .ak, #presidents .sd, #presidents .id, #presidents .or, #presidents .ct, #presidents .md, #presidents .ut, #presidents .mt, #presidents .nm, #presidents .ny {
     color: #fecc5c; }
-  #presidents .nv, #presidents .ne, #presidents .ma, #presidents .sc, #presidents .wa, #presidents .ks, #presidents .pa, #presidents .co, #presidents .wv, #presidents .ok, #presidents .va, #presidents .nc, #presidents .mo, #presidents .az, #presidents .ia, #presidents .mn, #presidents .ca, #presidents .la, #presidents .fl, #presidents .mi, #presidents .ga, #presidents .tx, #presidents.ar  {
+  #presidents .nv, #presidents .ne, #presidents .ma, #presidents .sc, #presidents .wa, #presidents .ks, #presidents .pa, #presidents .co, #presidents .wv, #presidents .ok, #presidents .va, #presidents .nc, #presidents .mo, #presidents .az, #presidents .ia, #presidents .mn, #presidents .ca, #presidents .la, #presidents .fl, #presidents .mi, #presidents .ga, #presidents .tx, #presidents .ar  {
     color: #fd8d3c; }
   #presidents .al, #presidents .tn, #presidents .oh, #presidents .ky, #presidents .wi, #presidents .ms, #presidents .in {
     color: #f03b20; }

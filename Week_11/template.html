@@ -67,7 +67,7 @@
 	
 	<link rel="stylesheet" href="../style.css" />
 </head>
-<body style="background-color:#ffffff">
+<body>
 <div class="wrapper">
 
 <h1>Sketch of final project layout</h1>
@@ -79,7 +79,17 @@ text
 Below, you'll see a full drug shortage chart with some old data. My new data isn't quite behaving yet, but hopefully this will give you an idea of the capabilities!
 </p>
 
-<div class="timeline-chart"><script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<div class="timeline-chart"></div>
+
+</div>
+
+<p>
+A bit more text.
+</p>
+</body>
+</html>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script type="text/javascript">
 
@@ -111,7 +121,7 @@ var tip = d3.tip()
     return "<span style='text-align:center'>" + String(d.drug) + " " + String(d.reasons) + "<br>" + String(d.start).substr(3,12) + " - " + String(d.end).substr(3,12) + "</span>";
   });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".timeline-chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
@@ -184,12 +194,4 @@ svg.append('g')
 
 
 
-</script></div>
-
-</div>
-
-<p>
-A bit more text.
-</p>
-</body>
-</html>
+</script>

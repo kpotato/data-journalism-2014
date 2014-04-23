@@ -1,0 +1,185 @@
+
+<style type="text/css">
+	
+	svg {
+		/*border:1px solid #f0f;*/
+		font: 10px arial;
+	}
+
+	.product-name {
+		text-anchor: end;
+		font-size:11px;
+		font-weight:bold;
+	}
+
+	.annotation-line {
+		stroke:#dedede;
+		stroke-width:2px;
+		stroke-linecap:round;
+	}
+
+	.streak-line {
+		stroke:red;
+		stroke-width:3px;
+	}
+
+	.d3-tip {
+		line-height: 1;
+		font: 10px arial;
+		font-weight: bold;
+		padding: 12px;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		border-radius: 2px;
+	}
+	
+	.d3-tip:after {
+		box-sizing: border-box;
+		display: inline;
+		font-size: 10px;
+		width: 100%;
+		line-height: 1;
+		color: rgba(0, 0, 0, 0.8);
+		content: "\25BC";
+		position: absolute;
+		text-align: center;
+	}
+
+	.d3-tip.n:after {
+		margin: -1px 0 0 0;
+		top: 100%;
+		left: 0;
+	}	
+	
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Final Project Template</title>
+	
+	<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<h1>Sketch of final project layout</h1>
+<p>
+text
+</p>
+
+<p>
+Below, you'll see a full drug shortage chart with some old data. My new data isn't quite behaving yet, but hopefully this will give you an idea of the capabilities!
+</p>
+
+<div class="timeline-chart"></div>
+
+
+</body>
+</html>
+
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script type="text/javascript">
+
+var margin = {top: 30, right: 10, bottom: 20, left: 200};
+
+var width = 960 - margin.left - margin.right,
+    height = 3000 - margin.top - margin.bottom;
+
+var startDate = new Date(2009,5,1),
+	endDate = new Date(2011,8,1);
+
+var dateFormat = d3.time.format("%m/%d/%y");
+
+var x = d3.time.scale()
+    .range([0, width])
+    .domain([ startDate, endDate ]);
+
+ var y0 = d3.scale.ordinal()
+		 .rangeBands([0, height]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+	
+
+var tip = d3.tip()
+	.attr('class', 'd3-tip')
+	.offset([-10, 0])
+	.html(function(d) {
+    return "<span style='text-align:center'>" + String(d.drug) + " " + String(d.reasons) + "<br>" + String(d.start).substr(3,12) + " - " + String(d.end).substr(3,12) + "</span>";
+  });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+
+d3.csv("drug-streaks-old.csv", function(err, data) {
+
+	// loop through the data, changing the formats from strings to dates.
+	data.forEach(function(d) {
+		d.start = dateFormat.parse(d.start);
+		d.end = dateFormat.parse(d.end);
+	});
+
+	streaksByDrug = d3.nest()
+			.key(function(d) { return d.company + " " + d.drug; })
+			//.key(function(d) { return d.drug; })
+			.entries(data);
+
+
+	y0.domain(streaksByDrug.map(function(d) { return d.key }));
+
+	var backgroundStreaks = svg.selectAll(".drug-streak")
+			.data(streaksByDrug)
+			.enter().append("g")
+			.attr("transform", function(d) { return "translate(0," + y0(d.key) +  ")" });
+
+  backgroundStreaks.append("text")
+  		.text(function(d) { return d.key; })
+  		.attr("class", "product-name")
+  		.attr("dx", -10);
+
+  backgroundStreaks.append("line")
+      .attr("x1", x(startDate))
+      .attr("y1", 0)
+      .attr("x2", x(endDate) )
+      .attr("y2", 0)
+      .classed("annotation-line",true);
+
+  var drugStreaks = backgroundStreaks.selectAll(".drug-streak")
+		 	.data(function(d) { return d.values; })
+   	.enter()
+	   	.append("g");
+
+ 	drugStreaks.append("line")
+	    .attr("x1", function(d) { return x(d.start); })
+	    .attr("y1", 0)
+	    .attr("x2", function(d) { return x(d.end); })
+	    .attr("y2", 0)
+	    .classed("streak-line",true)
+		.style("stroke",function(d) { return(d.color);})
+		.on('mouseover', tip.show)
+		.on('mouseout', tip.hide)
+;		
+		
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient('bottom')
+    .tickSize(0)
+    .tickPadding(-12);
+
+svg.append('g')
+    .attr('class', 'x axis')
+//    .attr('transform', 'translate(0, ' + (height - margin.top - margin.bottom) + ')')
+    .call(xAxis);
+
+});
+
+
+
+</script>

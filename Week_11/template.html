@@ -80,7 +80,7 @@ Here are some of the things you can find out with the graph, highlighted by scre
 Below, you'll see a full drug shortage chart with some old data. My new data isn't quite behaving yet, but hopefully this will give you an idea of the capabilities!
 </p>
 </div>
-<div class="timeline-chart"><input type="text" id="searchBox"><input type="button" id="search" value="search"/>
+<div class="timeline-chart"><input type="text" id="searchBox"><input type="button" id="search" value="search"/><input type="button" id="clear" value="clear"/>
 </div>
 
 </div>
@@ -210,6 +210,13 @@ svg.call(tip);
 	d3.select("svg").remove();
 	drawAll();
 	console.log(searchterm);
+};
+	
+	document.getElementById('clear').onclick = function() {
+    searchterm = "";
+	d3.select("svg").remove();
+	drawAll();
+	console.log("Search cleared");
 };
 
 </script>

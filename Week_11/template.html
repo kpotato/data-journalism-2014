@@ -95,6 +95,10 @@ A bit more text.
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script type="text/javascript">
+	
+var searchterm = "";
+
+function drawAll(){
 
 var margin = {top: 30, right: 5, bottom: 20, left: 185};
 
@@ -129,15 +133,7 @@ var svg = d3.select(".timeline-chart").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-svg.call(tip);
-
-document.getElementById('search').onclick = function() {
-    var searchterm = "";
-    searchterm = document.getElementById("searchBox").value;
-	console.log(searchterm)
-};
-
+	
 d3.csv("drug-streaks-old.csv", function(err, data) {
 
 	// loop through the data, changing the formats from strings to dates.
@@ -150,8 +146,9 @@ d3.csv("drug-streaks-old.csv", function(err, data) {
 			.key(function(d) { return d.company + " " + d.drug; })
 			//.key(function(d) { return d.drug; })
 			.entries(data);
-
-	var filteredStreaks = streaksByDrug.filter(function(d) { return d.onlyPuttingKeyHereWorks != 'manufacturing delays'; })
+			
+	
+	var filteredStreaks = streaksByDrug.filter(function(d) { return d.key.indexOf(searchterm) >= 0; })
 	console.log(filteredStreaks.length);
 
 	y0.domain(filteredStreaks.map(function(d) { return d.key }));
@@ -199,9 +196,20 @@ svg.append('g')
     .attr('class', 'x axis')
 //    .attr('transform', 'translate(0, ' + (height - margin.top - margin.bottom) + ')')
     .call(xAxis);
+	
+svg.call(tip);
 
-});
+})
 
+};
 
+	drawAll();
+	
+	document.getElementById('search').onclick = function() {
+    searchterm = document.getElementById("searchBox").value;
+	d3.select("svg").remove();
+	drawAll();
+	console.log(searchterm);
+};
 
 </script>

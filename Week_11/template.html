@@ -97,13 +97,14 @@ A bit more text.
 <script type="text/javascript">
 	
 var searchterm = "";
+var hstart = 3585;
 
 function drawAll(){
 
 var margin = {top: 30, right: 5, bottom: 20, left: 185};
 
 var width = 960 - margin.left - margin.right,
-    height = 3000 - margin.top - margin.bottom;
+    height = hstart - margin.top - margin.bottom;
 
 var startDate = new Date(2009,5,1),
 	endDate = new Date(2011,3,0);
@@ -146,10 +147,8 @@ d3.csv("drug-streaks-old.csv", function(err, data) {
 			.key(function(d) { return d.company + " " + d.drug; })
 			//.key(function(d) { return d.drug; })
 			.entries(data);
-			
 	
 	var filteredStreaks = streaksByDrug.filter(function(d) { return d.key.indexOf(searchterm) >= 0; })
-	console.log(filteredStreaks.length);
 
 	y0.domain(filteredStreaks.map(function(d) { return d.key }));
 
@@ -207,14 +206,21 @@ svg.call(tip);
 	
 	document.getElementById('search').onclick = function() {
     searchterm = document.getElementById("searchBox").value;
-	d3.select("svg").remove();
-	drawAll();
 	console.log(searchterm);
+	d3.select("svg").remove();
+	filteredStreaks = streaksByDrug.filter(function(d) { return d.key.indexOf(searchterm) >= 0; })
+	console.log(filteredStreaks.length);
+	
+	calibrate = (15 * filteredStreaks.length + 80);
+	hstart = calibrate;
+	console.log(hstart);
+	drawAll();
 };
 	
 	document.getElementById('clear').onclick = function() {
     searchterm = "";
 	d3.select("svg").remove();
+	hstart = 3585;
 	drawAll();
 	console.log("Search cleared");
 };

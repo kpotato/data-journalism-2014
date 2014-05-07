@@ -128,10 +128,10 @@ On Halloween of 2013, FDA put out another <a href="http://www.fda.gov/NewsEvents
 <p>
 The actions FDA takes now could just stave off those new drug shortages for good.
 </p>
-
 <p>
 Drug shortage changes before and after FDASIA is only one of many trends to be found in FDA's drug shortage data, if only it can be sorted through correctly. Cycles of companies running into shortages, seasonal shortage trends, and trends for particular types of drugs can all be found more easily when tracked through time. Below is a chart documenting the shortages reported by each company about each drug - by hovering over the shortage, one can see the lengths of shortage and the reasons given.
 </p>
+<h2>The Drug Shortage Chart</h2>
 <p>
 To search for trends, it's possible to filter the chart by company, drug, reasons for shortage, or type (i.e. pediatric, cardiovascular...). The data was difficult to pull from FDA's site and is still being cleaned, so there may be small inaccuracies that will disappear over time as everything is verified. The color cues may help identify shortage reason patterns.
 </p>
@@ -155,7 +155,7 @@ Thanks for reading!
 <script type="text/javascript">
 
 var searchterm = "";
-var hstart = 8660;
+var hstart = 10505;
 
 function drawAll(){
 
@@ -285,7 +285,7 @@ svg.call(tip);
 	document.getElementById('clear').onclick = function() {
     searchterm = "";
 	d3.select("svg").remove();
-	hstart = 8660;
+	hstart = 10505;
 	searchBox.value='';
 	drawAll();
 	console.log("Search cleared");

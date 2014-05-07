@@ -67,34 +67,79 @@
 	
 	<link rel="stylesheet" href="../style.css" />
 </head>
+
 <body>
 <div class="wrapper">
 
 <h1>Final Project</h1>
-<div class="sidebar">
-<img src="colorscale.png" align = "left">
+<img src="colorscale.png" style="width:100px;height:1800px" align="left" >
+<div>
+<p>
+<br>
+When bacteria prove too smart for normal antibiotics, doctors call the drug amikacin in as a last resort. The injectable drug is often patients' last hope when they're infected by hospital bacteria - which have gained resistance to most everything as they've survived the hospital halls - or drug-resistant tuberculosis. When a patient needs amikacin, it's often difficult to find a substitute - but there's been too little to support the country's need since 2010.
+</p>
+<p>
+It started with manufacturing delays. Or at least, that's what the two manufacturers, Bedford Laboratories and Teva Pharmaceuticals, reported to the Food and Drug Administration, and that's what appeared under “Amikacin” on their drug shortages website. In actuality, it was a combination of circumstances – Hospira, another company, had discontinued making the drug after a raw material shortage in May, and Teva had been having manufacturing delays for months already. Bedford running into manufacturing issues was just the final straw. And there have been shortages right up until the present day, with companies citing capacity constraints and manufacturing changes as the demand for the drug ramped up.
+</p>
+<img src="amikacinshortagereasons.png" style="width:800px;">
+<p>
+Each reason built on the others until amikacin was trapped in a cycle of too much demand for too little supply - and matters became even worse when one of Bedford's manufacturing plants began recalling its tainted products and - after almost two years of issues - shutting down altogether. The shortage continues to this day, but is lessened somewhat by a third company, Heritage Pharmaceuticals, beginning manufacture as it ventures into creating injectible drugs.
+</p>
+<p>
+Amikacin is one of over 200 drugs whose shortages have appeared on the FDA's site - drugs that are often essential and hard to replace.
+</p>
+<p>
+The color-changing bar on the left represents the number of drug shortages on a given day archived from the FDA's website - the top of the page is 2009, and we're reaching around 2011 now.
+</p>
+<p>
+On July 9, 2012, the FDA took action to try and reduce dangerous, long-lasting shortages like the one that affected amikacin. Their plan, the FDA Safety and Innovation Act, gave them the power to help lessen shortages and required companies to report earlier and in more detail.
+</p>
+<p>
+Diving into the FDA site's archived pages, we can investigate what effect the law is having on shortages.
+</p>
+<p>
+First off, the basics. Here's the number of reported drug shortages, and the dotted line is when the FDASIA took effect.
+</p>
+
+<p style="color:white;">...................................<img src="ShortagesDay.png" style="width:500px"></p>
+
+<p>
+While the average length of drug shortages didn't decrease, the durations did - from 416 days on average to 353. It makes sense: the law required companies to report shortages more often, in the hopes that they could be combated faster.
+</p>
+<p>
+The reasons behind the shortages changed somewhat as well - represented here in proportions of each reported reason.
+</p>
+
+<p style="color:white;">...................................<img src="ReasonsFDASIA.png" style="width:500px"></p>
+
+<p>
+Shortly before the law came out, a <a href="http://oversight.house.gov/wp-content/uploads/2012/06/6-15-2012-Report-FDAs-Contribution-to-the-Drug-Shortage-Crisis.pdf">House Committee Report</a> revealed that many drug shortages were the FDA's fault - 
+manufacturing issues would lead to manufacturers being required legally to shut down production, even if no other companies could pick up the slack. After the law, which has the FDA work with manufacturers - for instance, letting them filter particulates out of a batch of a vital drug instead of disposing of it and starting over. That work is reflected in the fact that manufacturing issues caused a much lower proportion of shortages after the law took effect.
+</p>
+<p>
+Something else??
+</p>
+<p>
+Similar actions could just stave off these new drug shortages for good.
+</p>
+
+<p>
+Drug shortage changes before and after FDASIA is only one of many trends to be found in the FDA's drug shortage data, if only it can be sorted through correctly. Below is a chart documenting the shortages reported by each company about each drug - by hovering over the shortage, one can see the lengths of shortage and the reasons given.
+</p>
+<p>
+To search for trends, it's possible to filter the chart by company, drug, reasons for shortage, or type (i.e. pediatric, cardiovascular...). The data was difficult to pull from the FDA's site and is still being cleaned, so there may be small inaccuracies that will disappear over time as everything is verified. The color cues may help identify shortage reason patterns.
+</p>
+</div>
+<div class="timeline-chart"><input type="text" id="searchBox"><input type="button" id="Filter drugs" value="Filter drugs"/><input type="button" id="clear" value="clear"/>
 </div>
 
 <div>
 <p>
-When bacteria prove too smart for normal antibiotics, doctors call the drug amikacin in as a last resort. The drug is often patients' last hope when they're infected by hospital bacteria - which have gained resistance to most everything as they've survived the hospital halls - or drug-resistant tuberculosis. Amikacin has saved TK people from TK TKs - but there's been too little to support the country's need since 2010.
+Thanks for reading!
 </p>
-<p>
-It started with manufacturing delays. Or at least, that's what the two manufacturers, Bedford Laboratories and Teva, reported to the FDA, and that's what appeared under “Amikacin” on their drug shortages website. In actuality, it was a combination of circumstances – Hospira, another company, had discontinued making the drug after a raw material shortage in May, and Teva had been having manufacturing delays for months already. Bedford running into manufacturing issues was just the final straw. And there have been shortages right up until the present day, with companies citing TK and TK and TK. [stuff] each shortage built on the others, and... [ben venue]
-</p>
-<img src="amikacinshortagereasons.png" width = "800">
-<p>
-Below, you'll see a full drug shortage chart with some old data. My new data isn't quite behaving yet, but hopefully this will give you an idea of the capabilities!
-</p>
-</div>
-<div class="timeline-chart"><input type="text" id="searchBox"><input type="button" id="search" value="search"/>
 </div>
 
 </div>
-<div>
-<p>
-A bit more text.
-</p>
 </div>
 </body>
 </html>
@@ -103,13 +148,18 @@ A bit more text.
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script type="text/javascript">
 
+var searchterm = "";
+var hstart = 8660;
+
+function drawAll(){
+
 var margin = {top: 30, right: 5, bottom: 20, left: 185};
 
 var width = 960 - margin.left - margin.right,
-    height = 3000 - margin.top - margin.bottom;
+    height = hstart - margin.top - margin.bottom;
 
 var startDate = new Date(2009,5,1),
-	endDate = new Date(2011,3,0);
+	endDate = new Date(2014,5,0);
 
 var dateFormat = d3.time.format("%m/%d/%y");
 
@@ -128,7 +178,7 @@ var tip = d3.tip()
 	.attr('class', 'd3-tip')
 	.offset([-10, 0])
 	.html(function(d) {
-    return "<span style='text-align:center'>" + String(d.drug) + " " + String(d.reasons) + "<br>" + String(d.start).substr(3,12) + " - " + String(d.end).substr(3,12) + "</span>";
+    return "<span style='text-align:center'>" + d.drug + " " + d.reasons + "<br>" + String(d.start).substr(3,12) + " - " + String(d.end).substr(3,12) + "</span>";
   });
 
 var svg = d3.select(".timeline-chart").append("svg")
@@ -136,16 +186,8 @@ var svg = d3.select(".timeline-chart").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-svg.call(tip);
-
-document.getElementById('search').onclick = function() {
-    var searchterm = "";
-    searchterm = document.getElementById("searchBox").value;
-	console.log(searchterm)
-};
-
-d3.csv("drug-streaks-old.csv", function(err, data) {
+	
+d3.csv("drug-streak-list.csv", function(err, data) {
 
 	// loop through the data, changing the formats from strings to dates.
 	data.forEach(function(d) {
@@ -157,12 +199,22 @@ d3.csv("drug-streaks-old.csv", function(err, data) {
 			.key(function(d) { return d.company + " " + d.drug; })
 			//.key(function(d) { return d.drug; })
 			.entries(data);
+			
+streaksByDrug.forEach(function(d) {
+	d.reasonsString = d.values.map(function(d) { return d.reasons; }).join(" ");
+});
 
-
-	y0.domain(streaksByDrug.map(function(d) { return d.key }));
+streaksByDrug.forEach(function(d) {
+	d.typeString = d.values.map(function(d) { return d.type; }).join(" ");
+});
+ 
+// and this is altered a bit
+	var filteredStreaks = streaksByDrug.filter(function(d) { return d.key.indexOf(searchterm) > -1 || d.reasonsString.indexOf(searchterm) > -1 || d.typeString.indexOf(searchterm) > -1; })
+	
+	y0.domain(filteredStreaks.map(function(d) { return d.key }));
 
 	var backgroundStreaks = svg.selectAll(".drug-streak")
-			.data(streaksByDrug)
+			.data(filteredStreaks)
 			.enter().append("g")
 			.attr("transform", function(d) { return "translate(0," + y0(d.key) +  ")" });
 
@@ -192,7 +244,7 @@ d3.csv("drug-streaks-old.csv", function(err, data) {
 		.style("stroke",function(d) { return(d.color);})
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
-;		
+;
 		
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -204,9 +256,33 @@ svg.append('g')
     .attr('class', 'x axis')
 //    .attr('transform', 'translate(0, ' + (height - margin.top - margin.bottom) + ')')
     .call(xAxis);
+	
+svg.call(tip);
 
-});
+})
 
+};
 
+	drawAll();
+
+	document.getElementById('Filter drugs').onclick = function() {
+    searchterm = document.getElementById("searchBox").value;
+	console.log(searchterm);
+	d3.select("svg").remove();
+	filteredStreaks = streaksByDrug.filter(function(d) { return d.key.indexOf(searchterm) > -1 || d.reasonsString.indexOf(searchterm) > -1 || d.typeString.indexOf(searchterm) > -1; })	
+	calibrate = (15 * filteredStreaks.length + 80);
+	hstart = calibrate;
+	console.log(calibrate);
+	drawAll();
+};
+	
+	document.getElementById('clear').onclick = function() {
+    searchterm = "";
+	d3.select("svg").remove();
+	hstart = 8660;
+	searchBox.value='';
+	drawAll();
+	console.log("Search cleared");
+};
 
 </script>
